@@ -28,17 +28,92 @@ ball.x = gamecanvas.width/2;
 ball.y = gamecanvas.height/2;
 ball.radius = 10;
 ball.color = '#FFFFFF';
+var ballyVel = 3.00;
+var ballxVel = 2.50;
 
+
+//create the right hand side paddle
+var rightPaddle = new rect();
+rightPaddle.height = 100;
+rightPaddle.width = 30;
+rightPaddle.x = 760;
+rightPaddle.y = 250;
+rightPaddle.color = '#FFFFFF';
 
 //called once per frame
 function update()
 {
-    if (Key.isDown(Key.DOWN)) {
+    //left paddle keyboard control
+    leftPaddleMovement();
+    //right paddle keyboard controls
+    rightPaddleMovement();
+    //ball movement logic
+    ballMovement();
+
+
+    //console.log('update: ' + deltaTime);
+}
+
+function ballMovement()
+{
+    ball.x += ballxVel;
+    ball.y += ballyVel;
+
+    if(ball.y == gamecanvas.height)
+    {
+        // When the ball hits the top or bottom of the screen
+        ballyVel = -ballyVel;
+    }
+    else if(ball.y == gamecanvas.height - gamecanvas.height)
+    {
+        ballyVel = -ballyVel;
+    }
+
+    if(ball.x == gamecanvas.width)
+    {
+        // When the ball hits a paddle
+        ballxVel = -ballxVel;
+    }
+    else if(ball.x == gamecanvas.height - gamecanvas.height)
+    {
+        ballxVel = -ballxVel;
+    }
+}
+
+function rightPaddleMovement ()
+{
+    if (Key.isDown(Key.DOWN))
+    {
+        rightPaddle.y += 5;
+        //console.log('down ' + leftPaddle.y);
+    }
+
+    if (Key.isDown(Key.UP))
+    {
+        rightPaddle.y -= 5;
+        //console.log('up ' + leftPaddle.y);
+    }
+
+    //clamp the player movement
+    if(rightPaddle.y < 10)
+    {
+        rightPaddle.y = 10;
+    }
+    else if(rightPaddle.y > 490)
+    {
+        rightPaddle.y = 490;
+    }
+
+}
+
+function leftPaddleMovement ()
+{
+    if (Key.isDown(Key.S)) {
         leftPaddle.y += 5;
         //console.log('down ' + leftPaddle.y);
     }
 
-    if (Key.isDown(Key.UP)) {
+    if (Key.isDown(Key.W)) {
         leftPaddle.y -= 5;
         //console.log('up ' + leftPaddle.y);
     }
@@ -53,14 +128,14 @@ function update()
         leftPaddle.y = 490;
     }
 
-    //console.log('update: ' + deltaTime);
 }
 
 //called once per frame after update
 function draw()
 {
-    //draw the left paddle
+    //draw the paddles
     leftPaddle.draw();
+    rightPaddle.draw();
     //draw the ball
     ball.draw();
 
