@@ -14,14 +14,6 @@ setGameLoopFunctions(update, draw, postupdate);
 
 setGameBackgroundColor('#000000');
 
-//create the left hand size paddle
-var leftPaddle = new rect();
-leftPaddle.height = 100;
-leftPaddle.width = 30;
-leftPaddle.x = 10;
-leftPaddle.y = 250;
-leftPaddle.color = '#FFFFFF';
-
 //create the ball
 var ball = new circle();
 ball.x = gamecanvas.width/2;
@@ -31,6 +23,13 @@ ball.color = '#FFFFFF';
 var ballyVel = 3.00;
 var ballxVel = 2.50;
 
+//create the left hand size paddle
+var leftPaddle = new rect();
+leftPaddle.height = 100;
+leftPaddle.width = 30;
+leftPaddle.x = 10;
+leftPaddle.y = 250;
+leftPaddle.color = '#FFFFFF';
 
 //create the right hand side paddle
 var rightPaddle = new rect();
@@ -43,16 +42,39 @@ rightPaddle.color = '#FFFFFF';
 //called once per frame
 function update()
 {
+
+    //ball collision detection
+    ballCollisionWithPaddles();
+    //ball movement logic
+    ballMovement();
     //left paddle keyboard control
     leftPaddleMovement();
     //right paddle keyboard controls
     rightPaddleMovement();
-    //ball movement logic
-    ballMovement();
 
 
     //console.log('update: ' + deltaTime);
 }
+
+function ballCollisionWithPaddles()
+{
+
+    //check if the leftpaddle and the ball collided
+    if(abcollision(ball, leftPaddle))
+    {
+        //hit the leftpaddle. Now change direction
+        console.log('hit left paddle');
+        ballxVel = -ballxVel;
+    }
+
+    if(abcollision(rightPaddle, ball))
+    {
+        //hit the right paddle. Now change direction
+        console.log('hit right paddle');
+        ballxVel = -ballxVel;
+    }
+}
+
 
 function ballMovement()
 {
@@ -71,7 +93,7 @@ function ballMovement()
 
     if(ball.x == gamecanvas.width)
     {
-        // When the ball hits a paddle
+
         ballxVel = -ballxVel;
     }
     else if(ball.x == gamecanvas.height - gamecanvas.height)
@@ -144,6 +166,7 @@ function draw()
 //called once per frame after draw
 function postupdate()
 {
+
     //console.log('postupdate');
 }
 

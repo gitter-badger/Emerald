@@ -51,8 +51,8 @@ var circle = function () {
     this.x = 220;
     this.y = 270;
     this.radius = 40;
-    this.width = 32;
-    this.height = 32;
+    this.width = this.radius / 2;
+    this.height = this.radius / 2;
 
     this.draw = function() {
         var c = document.getElementById(gamecanvas.id);
