@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/emerald-api/badge/?version=latest)](http://emerald-api.readthedocs.org/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/emerald-api/badge/?version=latest)](linktodocsgoeshere)
 
 # Emerald
 A JS Game Framework
