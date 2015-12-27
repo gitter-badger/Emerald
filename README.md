@@ -21,10 +21,10 @@ Its simple, fast, and used for fun.
 </html>
 ```
 
-**STEP ONE
-
+*STEP ONE
 *create a new game object
 *give it a width and height
+
 ```javascript
 
 var mygame = new Game("My First Game In Emerald", 800,600, onGameComplete);
@@ -35,8 +35,8 @@ function onGameComplete () {
 ```
 
 
-//STEP TWO
-//tell emerald which methods to call for the game logic
+*STEP TWO
+*tell emerald which methods to call for the game logic
 ```
 setGameLoopFunctions(update, draw, postupdate);
 ```
