@@ -2,7 +2,11 @@
  * Created by chrisfigueroa on 12/22/15.
  */
 
-//draw a sprite on the screen
+
+/**
+ * Draw a sprite on the screen
+ * @function
+ */
 var sprite = function () {
 
     //the file location
@@ -27,7 +31,11 @@ var sprite = function () {
     }
 }
 
-//create a rectangle
+
+/**
+ * Draws a Rectangle on screen
+ * @function
+ */
 var rect = function () {
 
     this.color = "#00A";
@@ -41,10 +49,15 @@ var rect = function () {
         var ctx = c.getContext("2d");
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fill();
     }
 };
 
-//create a circle
+
+/**
+ * Draws a circle on screen
+ * @function
+ */
 var circle = function () {
 
     this.color = "#00A";
@@ -64,3 +77,54 @@ var circle = function () {
         ctx.stroke();
     }
 };
+
+
+/**
+ * Draws a line on screen
+ * @function
+ */
+var line = function () {
+
+    this.startPosx = 0;
+    this.startPosy = 0;
+
+    this.color = "#000000";
+
+    var lines = [];
+
+     var line = function (x,y) {
+        this.x = x;
+        this.y = y;
+    };
+
+    this.addline = function (x,y) {
+        lines.push(new line(x,y));
+    }
+
+
+
+    this.draw = function () {
+
+        var canvas = document.getElementById(gamecanvas.id);
+        var ctx = canvas.getContext("2d");
+
+        ctx.moveTo(this.startPosx, this.startPosy);
+
+        if(lines.length == null)
+        {
+            console.error('create a new line with addline(x,y); ');
+        }
+        else
+        {
+            for (i = 0; i < lines.length; i++) {
+                ctx.lineTo(lines[i].x, lines[i].y);
+            }
+        }
+
+        ctx.strokeStyle = this.color;
+        ctx.stroke();
+
+    }
+
+}
+

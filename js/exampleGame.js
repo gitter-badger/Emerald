@@ -18,14 +18,7 @@ setGameLoopFunctions(update, draw, postupdate);
 
 setGameBackgroundColor('#000000');
 
-//create the ball
-var ball = new circle();
-ball.x = gamecanvas.width/2;
-ball.y = gamecanvas.height/2;
-ball.radius = 10;
-ball.color = '#FFFFFF';
-var ballyVel = 3.00;
-var ballxVel = 2.50;
+
 
 //create the left hand size paddle
 var leftPaddle = new rect();
@@ -42,6 +35,25 @@ rightPaddle.width = 30;
 rightPaddle.x = 760;
 rightPaddle.y = 250;
 rightPaddle.color = '#FFFFFF';
+
+//create the ball
+var ball = new circle();
+ball.x = gamecanvas.width/2;
+ball.y = gamecanvas.height/2;
+ball.radius = 10;
+ball.color = '#FFFFFF';
+var ballyVel = 3.00;
+var ballxVel = 2.50;
+
+
+// line drawing example
+//var linetest = new line();
+//linetest.startPosx = 0;
+//linetest.startPosy = 0;
+//linetest.color = "#FFFFFF";
+//linetest.addline(100,100);
+//linetest.addline(100,200);
+//linetest.addline(300,200);
 
 //called once per frame
 function update()
@@ -159,11 +171,13 @@ function leftPaddleMovement ()
 //called once per frame after update
 function draw()
 {
+    //draw the ball
+    ball.draw();
     //draw the paddles
     leftPaddle.draw();
     rightPaddle.draw();
-    //draw the ball
-    ball.draw();
+
+    linetest.draw();
 
 }
 
