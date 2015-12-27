@@ -189,4 +189,4 @@ function postupdate()
 }
 
 //call the game loop so you can draw,render,up game entities on screen
-gameloop();
+//gameloop();
