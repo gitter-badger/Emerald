@@ -64,7 +64,13 @@ var deltaTime;
 //the canvas object that draws our game
 var gamecanvas;
 
-//the game object that will create a canvas on the default HTML file
+/**
+ * the game object that will create a canvas on the default HTML file
+ * @constructor
+ * @param {string} title - The title of the game.
+ * @param {int} width - The width of the game canvas
+ * @param {int} height - The height of the game canvas
+ */
 function Game (gamename, width, height) {
 
     ///create a title tag
