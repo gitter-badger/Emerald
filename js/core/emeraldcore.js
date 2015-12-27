@@ -174,6 +174,8 @@ function gameloop () {
 
 }
 
+//call the game loop so you can draw,render,up game entities on screen
+gameloop();
 
 /**
  * clear the canvas so we can draw objects moving
