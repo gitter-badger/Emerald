@@ -6,7 +6,11 @@
 //STEP ONE
 //create a new game object
 //give it a width and height
-var mygame = new Game("My First Game In Emerald", 800,600);
+var mygame = new Game("My First Game In Emerald", 800,600, onGameComplete);
+
+function onGameComplete () {
+    console.log('Created Game Canvas');
+}
 
 //STEP TWO
 //tell emerald which methods to call for the game logic

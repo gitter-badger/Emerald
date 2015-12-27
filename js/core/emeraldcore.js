@@ -2,6 +2,10 @@
  * Created by chrisfigueroa on 12/22/15.
  */
 
+///////////////////////////
+//// Engine Specific
+///////////////////////////
+
 //Signal globals
 var Signal = signals.Signal;
 var mySignal = new Signal();
@@ -24,24 +28,38 @@ var gamePostUpdateSignal = {
     stopped : new Signal()
 };
 
-//set the update loop with the function passed.
-//will override currently set function passed. If any.
+///////////////////////////
+//// End of Engine Specific
+///////////////////////////
+
+
+/**
+ * Set all the main update game loop. Called once per frame
+ * @function
+ * @param {function} update function - the function called once per frame
+ */
 function setUpdateFunctionLoop(newUpdateFunction) {
 
     gamePostUpdateSignal.started.add(newUpdateFunction);
 
 }
 
-//set the draw loop with the function passed.
-//will override currently set function passed. If any.
+/**
+ * Set all the draw loop
+ * @function
+ * @param {function} draw function - function called after update
+ */
 function setDrawFunctionLoop (newDrawFunction) {
 
     gameDrawSignal.started.add(newDrawFunction);
 
 }
 
-//set the PostUpdate loop with the function passed.
-//will override currently set function passed. If any.
+/**
+ * Set all the post update function
+ * @function
+ * @param {function} postupdate - function called after draw. For clean up
+ */
 function setPostUpdateLoop (newPostUpdateFunction) {
 
     gamePostUpdateSignal.started.add(newPostUpdateFunction);
@@ -49,7 +67,13 @@ function setPostUpdateLoop (newPostUpdateFunction) {
 }
 
 
-//Set all the game loop functions: UpdateFunction, DrawFunction, PostUpdateFunction
+/**
+ * Set all the game loop functions at once
+ * @function
+ * @param {function} update function - the function called once per frame
+ * @param {function} draw function - function called after update
+ * @param {function} postupdate - function called after draw. For clean up
+ */
 function setGameLoopFunctions(updatefunction, drawfunction, postupdatefunction) {
 
     gameUpdateSignal.started.add(updatefunction);
@@ -58,10 +82,17 @@ function setGameLoopFunctions(updatefunction, drawfunction, postupdatefunction) 
 
 }
 
-//delta time - Is updated before Update is called
+
+/**
+ * delta time - Is updated before Update is called
+ * @variable
+ */
 var deltaTime;
 
-//the canvas object that draws our game
+/**
+ * the canvas object that draws our game
+ * @variable
+ */
 var gamecanvas;
 
 /**
@@ -70,8 +101,9 @@ var gamecanvas;
  * @param {string} title - The title of the game.
  * @param {int} width - The width of the game canvas
  * @param {int} height - The height of the game canvas
+ * @param {function} Setup OnComplete Callback
  */
-function Game (gamename, width, height) {
+function Game (gamename, width, height, callback) {
 
     ///create a title tag
     var title = document.createElement('h3');
@@ -89,8 +121,7 @@ function Game (gamename, width, height) {
     gamecanvas.style.position = "absolute";
     gamecanvas.style.border   = "1px solid";
     document.body.appendChild(gamecanvas);
-    console.log('Created Game Canvas');
-
+    callback();
 }
 
 //change the canvas background color
@@ -99,23 +130,36 @@ var setGameBackgroundColor = function (colorcode) {
     document.getElementById(gamecanvas.id).style.background = colorcode;
 }
 
-//change the game fps. Defaults to 60
+/**
+ * change the game fps. Defaults to 60
+ * @variable
+ */
 var gameFPS = 60;
 
-//sets the FPS to whatever value listed
+/**
+ * sets the FPS to whatever value listed
+ * @function
+ */
 function setGameFPS (fpsvalue) {
     gameFPS = fpsvalue;
     console.log('FPS set to: ' + fpsvalue);
 }
 
-//resets the FPS to the default 60fps
+/**
+ * resets the FPS to the default 60fps
+ * @function
+ */
 function resetGameFPS () {
     gameFPS = 60;
     console.log('FPS returned to 60');
 }
 
-//the game loop that will update and draw your game objects
+/**
+ * The main gameloop that calls all the functions specified in a specifc order
+ * @function
+ */
 function gameloop () {
+
     setInterval(function() {
 
         //find the following functions. If they exist call them?
@@ -127,9 +171,14 @@ function gameloop () {
         gamePostUpdateSignal.started.dispatch();
 
     }, 1000/gameFPS);
+
 }
 
-///clear the canvas so we can draw objects moving
+
+/**
+ * clear the canvas so we can draw objects moving
+ * @function
+ */
 function clearCanvas()
 {
     var c = document.getElementById(gamecanvas.id).getContext("2d");
