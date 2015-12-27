@@ -37,6 +37,12 @@ function onGameComplete () {
 
 *STEP TWO
 *tell emerald which methods to call for the game logic
+
 ```
 setGameLoopFunctions(update, draw, postupdate);
+```
+*STEP THREE
+*Set background
+```
+setGameBackgroundColor('#000000');
 ```
