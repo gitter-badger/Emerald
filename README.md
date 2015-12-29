@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/emerald-api/badge/?version=latest)](linktodocsgoeshere)
+[![Inline docs](http://inch-ci.org/github/kinifi/Emerald.svg?branch=master)](http://inch-ci.org/github/kinifi/Emerald)
 
 # Emerald
 A JS Game Framework
