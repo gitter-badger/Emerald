@@ -177,7 +177,7 @@ function draw()
     leftPaddle.draw();
     rightPaddle.draw();
 
-    linetest.draw();
+    //linetest.draw();
 
 }
 
