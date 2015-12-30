@@ -1,6 +1,8 @@
 [![Inline docs](http://inch-ci.org/github/kinifi/Emerald.svg?branch=master)](http://inch-ci.org/github/kinifi/Emerald)
 
 # Emerald
+
+[![Join the chat at https://gitter.im/kinifi/Emerald](https://badges.gitter.im/kinifi/Emerald.svg)](https://gitter.im/kinifi/Emerald?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A JS Game Framework
 
 Its simple, fast, and used for fun. 
